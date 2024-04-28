@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=Test_Run 
+#SBATCH --ntasks=1
+#SBATCH --time=0-24:00:00 
+#SBATCH --export=all 
+#SBATCH --mail-type=end,fail 
+#SBATCH --mail-user=tgfnzb@umsystem.edu
+#SBATCH --out=Mill-%j.out 
+#SBATCH --gres=gpu:1
+
+# %j will substitute to the job's id
+#now run your executables just like you would in a shell script, Slurm will set the working directory as the directory the job was submitted from. 
+#e.g. if you submitted from /home/username/softwaretesting your job would run in that directory.
+ 
+#(executables) (options) (parameters)
+#python simclr.py --config_env configs/env.yml --config_exp configs/pretext/simclr_cifar10.yml
+#python scan.py --config_env configs/env.yml --config_exp configs/scan/scan_cifar10.yml
+#python selflabel.py --config_env configs/env.yml --config_exp configs/selflabel/selflabel_cifar10.yml
+python main.py --config_env configs/env.yml --config_exp configs/pretext/simclr_cifar10.yml --config_env2 configs/env.yml --config_exp2 configs/scan/scan_cifar10.yml --config_env3 configs/env.yml --config_exp3 configs/selflabel/selflabel_cifar10.yml
