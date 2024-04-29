@@ -17,8 +17,8 @@ criterion: simclr
 criterion_kwargs:
    temperature: 0.1 
 
-# Hyperparameters was 500
-epochs: 3
+# Hyperparameters
+epochs: 500
 optimizer: sgd
 optimizer_kwargs:
    nesterov: False
